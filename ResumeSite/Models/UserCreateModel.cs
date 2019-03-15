@@ -8,6 +8,7 @@ namespace ResumeSite.Models
 {
 	public class UserCreateModel
 	{
+		[Required]
 		public string Username { get; set; }
 
 		[Required]

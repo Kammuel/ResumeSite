@@ -54,7 +54,7 @@ namespace ResumeSite.Controllers
 				User newUser = new User();
 
 				newUser.ConfirmationNo = confirmationCode;
-				newUser.Email = u.Email;
+				newUser.Email = u.EmailAddress;
 				newUser.Password = u.Password;
 				newUser.Username = u.Username;
 
