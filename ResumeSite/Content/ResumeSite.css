@@ -1,0 +1,19 @@
+﻿.Redbg {
+	background-color: red;
+}
+
+.Background {
+	background: url('../Images/longboardingGrey.jpg') no-repeat;
+	background-position: center;
+	background-size: cover;
+	overflow-y: scroll; /*do this to force the scroll bar*/
+	max-height: 100%;
+	background-attachment: fixed
+}
+
+.TransparentBox {
+	background-color: aquamarine;
+	height: 350px;
+	opacity: 0.75;
+	filter: none;
+}
