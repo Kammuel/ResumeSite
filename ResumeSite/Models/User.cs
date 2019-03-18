@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,7 @@ namespace ResumeSite.Models
 		public int UserID { get; set; }
 
 		[Required]
+		[Index(IsUnique = true)]
 		public string Username { get; set; }
 
 		[Required]

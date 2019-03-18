@@ -21,8 +21,13 @@
 				<ul class="nav navbar-nav">
 					<li>@Html.ActionLink("Home", "Index", "Home")</li>
 					<li>@Html.ActionLink("Phaser Game", "PhaserGame", "Home")</li>
-					<li>@Html.ActionLink("Login", "Login", "Home")</li>
 					<li>@Html.ActionLink("Background Example", "BackgroundGreyscale", "Home")</li>
+					@if (Session["Username"] == null)
+					{
+						<li>@Html.ActionLink("Login", "Login", "Home")</li>
+					}
+					<li>@Html.ActionLink("Register", "Login", "Home")</li>
+
 				</ul>
             </div>
         </div>

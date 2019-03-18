@@ -13,12 +13,13 @@ namespace ResumeSite.Controllers
 {
 	public class HomeController : Controller
 	{
-
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return View();
 		}
 
+		[HttpGet]
 		public ActionResult PhaserGame()
 		{
 			ViewBag.Message = "Your application description page.";
@@ -26,13 +27,54 @@ namespace ResumeSite.Controllers
 			return View();
 		}
 
+		[HttpGet]
 		public ActionResult BackgroundGreyscale()
 		{
 			return View();
 		}
 
+		[HttpGet]
 		public ActionResult Login()
 		{
+			return View();
+		}
+		
+
+		[HttpPost]
+		public ActionResult Login(User u)
+		{
+			ResumeDB db = new ResumeDB();
+
+			User loginUser = db.Users.Where(v => v.Username == u.Username).SingleOrDefault();
+
+			if(loginUser == null)
+			{
+				ViewBag.ErrorMessage = "No user found with that name.";
+
+				return View();
+			}
+			else
+			{
+				string pass = loginUser.Password;
+
+				if(!u.Password.Equals(pass))
+				{
+					ViewBag.ErrorMessage = "That password is incorrect.";
+
+					return View();
+				}
+				else if (u.Password.Equals(pass))
+				{
+					Session["Username"] = loginUser.Username;
+
+					return RedirectToAction("Index", "Home");
+				}
+				
+
+			}
+
+
+
 			return View();
 		}
 
@@ -76,6 +118,8 @@ namespace ResumeSite.Controllers
 				return View();
 			}
 		}
+
+
 
 
 		[HttpGet]
