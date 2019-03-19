@@ -49,7 +49,7 @@ namespace ResumeSite.Controllers
 
 			if(loginUser == null)
 			{
-				ViewBag.ErrorMessage = "No user found with that name.";
+				ViewBag.UserMessage = "No user found with that name.";
 
 				return View();
 			}
@@ -59,7 +59,7 @@ namespace ResumeSite.Controllers
 
 				if(!u.Password.Equals(pass))
 				{
-					ViewBag.ErrorMessage = "That password is incorrect.";
+					ViewBag.PasswordMessage = "That password is incorrect.";
 
 					return View();
 				}
@@ -72,9 +72,7 @@ namespace ResumeSite.Controllers
 				
 
 			}
-
-
-
+			
 			return View();
 		}
 
@@ -119,9 +117,7 @@ namespace ResumeSite.Controllers
 			}
 		}
 
-
-
-
+		
 		[HttpGet]
 		public ActionResult ConfirmationCode(User newUser)
 		{
@@ -129,8 +125,10 @@ namespace ResumeSite.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult ConfirmationCode()
+		public ActionResult ConfirmationCode(User newUser, int confirmation)
 		{
+
+
 			return View();
 		}
 
