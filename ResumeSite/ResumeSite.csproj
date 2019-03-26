@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201903160008332_InitialMigration.Designer.cs">
       <DependentUpon>201903160008332_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903262045238_Registration Page en Work.cs" />
+    <Compile Include="Migrations\201903262045238_Registration Page en Work.Designer.cs">
+      <DependentUpon>201903262045238_Registration Page en Work.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserCreateModel.cs" />
@@ -290,6 +294,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903160008332_InitialMigration.resx">
       <DependentUpon>201903160008332_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903262045238_Registration Page en Work.resx">
+      <DependentUpon>201903262045238_Registration Page en Work.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

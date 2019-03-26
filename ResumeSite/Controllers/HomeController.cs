@@ -127,7 +127,17 @@ namespace ResumeSite.Controllers
 		[HttpPost]
 		public ActionResult ConfirmationCode(User newUser, int confirmation)
 		{
+			if(confirmation == newUser.ConfirmationNo)
+			{
+				newUser.EmailConfirmed = true;
 
+				var db = new ResumeDB();
+
+				db.Users.Add(newUser);
+				db.SaveChanges();
+
+				return RedirectToAction("LoginSwitch", "Home");
+			}
 
 			return View();
 		}
