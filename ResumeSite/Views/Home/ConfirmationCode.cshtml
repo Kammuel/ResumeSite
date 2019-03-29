@@ -4,9 +4,22 @@
     ViewBag.Title = "ConfirmationCode";
 }
 
-<input type="text" name="confirmation" />
-<br/>
-<h1>Activate your account!</h1>
-<br/>
-<button class="btn btn-success">Activate</button>
+
+<form action="@Url.Action("ConfirmationCode", "Home", new { confirmation = Request.QueryString["confirmation"] } )" method="post">
+	<div class="form-group" style="padding-top: 10px;">
+		<div>
+			<input type="text" name="confirmation" />
+			<br />
+			<h1>Activate your account!</h1>
+			<br />
+			<button type="submit" class="btn btn-success">Activate Account!</button>
+			<br />
+			@ViewBag.ConfirmationError
+		</div>
+	</div>
+</form>
+
+@ViewBag.ConfirmationError
+
+
 

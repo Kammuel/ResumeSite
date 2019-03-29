@@ -14,7 +14,7 @@ namespace ResumeSite.Models
 		public int UserID { get; set; }
 
 		[Required]
-		[Index(IsUnique = true)]
+		
 		public string Username { get; set; }
 
 		[Required]

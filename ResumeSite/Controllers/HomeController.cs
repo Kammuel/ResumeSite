@@ -38,7 +38,7 @@ namespace ResumeSite.Controllers
 		{
 			return View();
 		}
-		
+
 
 		[HttpPost]
 		public ActionResult Login(User u)
@@ -47,7 +47,7 @@ namespace ResumeSite.Controllers
 
 			User loginUser = db.Users.Where(v => v.Username == u.Username).SingleOrDefault();
 
-			if(loginUser == null)
+			if (loginUser == null)
 			{
 				ViewBag.UserMessage = "No user found with that name.";
 
@@ -57,7 +57,7 @@ namespace ResumeSite.Controllers
 			{
 				string pass = loginUser.Password;
 
-				if(!u.Password.Equals(pass))
+				if (!u.Password.Equals(pass))
 				{
 					ViewBag.PasswordMessage = "That password is incorrect.";
 
@@ -69,10 +69,10 @@ namespace ResumeSite.Controllers
 
 					return RedirectToAction("Index", "Home");
 				}
-				
+
 
 			}
-			
+
 			return View();
 		}
 
@@ -91,11 +91,32 @@ namespace ResumeSite.Controllers
 
 				int confirmationCode = r.Next(0, 999999);
 
+				ResumeDB db = new ResumeDB();
+
+				List<User> allUsers = db.Users.ToList();
+
+				if (allUsers != null)
+				{
+					foreach (User currentUser in allUsers)
+					{
+
+						if(currentUser.Username.ToLower().Equals(u.Username.ToLower()))
+						{
+							ViewBag.UsernameMessage = "That username is already in use.";
+
+							return View();
+						}
+					}
+				}
+
+
 				User newUser = new User();
 
 				newUser.ConfirmationNo = confirmationCode;
 				newUser.Email = u.EmailAddress;
 				newUser.Password = u.Password;
+
+
 				newUser.Username = u.Username;
 
 
@@ -117,7 +138,7 @@ namespace ResumeSite.Controllers
 			}
 		}
 
-		
+
 		[HttpGet]
 		public ActionResult ConfirmationCode(User newUser)
 		{
@@ -127,7 +148,7 @@ namespace ResumeSite.Controllers
 		[HttpPost]
 		public ActionResult ConfirmationCode(User newUser, int confirmation)
 		{
-			if(confirmation == newUser.ConfirmationNo)
+			if (confirmation == newUser.ConfirmationNo)
 			{
 				newUser.EmailConfirmed = true;
 
@@ -138,7 +159,19 @@ namespace ResumeSite.Controllers
 
 				return RedirectToAction("LoginSwitch", "Home");
 			}
+			else
+			{
+				ViewBag.ConfirmationError = "That confirmation code was incorrect.";
 
+				return View();
+			}
+
+			
+		}
+
+		[HttpGet]
+		public ActionResult LoginSwitch()
+		{
 			return View();
 		}
 
