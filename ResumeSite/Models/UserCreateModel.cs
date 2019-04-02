@@ -19,6 +19,7 @@ namespace ResumeSite.Models
 		public string Password { get; set; }
 
 		[Required]
+		[DataType(DataType.Password)]
 		[Compare("Password", ErrorMessage = "Passwords must match.")]
 		public string RepeatPassword { get; set; }
 

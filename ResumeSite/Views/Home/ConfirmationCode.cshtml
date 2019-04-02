@@ -5,7 +5,7 @@
 }
 
 
-<form action="@Url.Action("ConfirmationCode", "Home", new { confirmation = Request.QueryString["confirmation"] } )" method="post">
+<form action="@Url.Action("ConfirmationCode", "Home",  new {@confirmation = Request.QueryString["confirmation"] } )" method="post">
 	<div class="form-group" style="padding-top: 10px;">
 		<div>
 			<input type="text" name="confirmation" />

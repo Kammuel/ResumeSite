@@ -142,12 +142,15 @@ namespace ResumeSite.Controllers
 		[HttpGet]
 		public ActionResult ConfirmationCode(User newUser)
 		{
-			return View(newUser);
+			Session["User"] = newUser;
+			return View();
 		}
 
 		[HttpPost]
-		public ActionResult ConfirmationCode(User newUser, int confirmation)
+		public ActionResult ConfirmationCode(int confirmation)
 		{
+			User newUser = (User)Session["User"];
+
 			if (confirmation == newUser.ConfirmationNo)
 			{
 				newUser.EmailConfirmed = true;
@@ -179,7 +182,15 @@ namespace ResumeSite.Controllers
 
 		/*RESEND CONFIRMATION CODE METHOD*/
 
+		[HttpGet]
+		public ActionResult LogOut()
+		{
+			Session["Username"] = null;
 
+			ViewBag.Message = "Successfully logged out!";
+
+			return RedirectToAction("Index", "Home");
+		}
 
 
 
